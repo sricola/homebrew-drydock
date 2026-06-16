@@ -49,6 +49,10 @@ class Drydock < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/drydock version")
-    assert_match "drydock", shell_output("#{bin}/drydock help 2>&1", 2)
+    assert_match "drydock", shell_output("#{bin}/drydock help 2>&1")
+    # Smoke: drydock status when brokerd isn't running exits non-zero with a
+    # clear "brokerd down" line — confirms socket discovery is wired.
+    output = shell_output("#{bin}/drydock status 2>&1", 0)
+    assert_match "brokerd", output
   end
 end

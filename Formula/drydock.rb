@@ -1,10 +1,10 @@
 class Drydock < Formula
   desc "Sandbox for autonomous coding agents on macOS"
   homepage "https://sricola.github.io/drydock/"
-  url "https://github.com/sricola/drydock/releases/download/v0.1.1/drydock-v0.1.1-darwin-arm64.tar.gz"
-  sha256 "4385d8b9462dde69532bf78ccb93edb17bed78dabb04df050576ad81eda9fdf1"
+  url "https://github.com/sricola/drydock/releases/download/v0.1.2/drydock-v0.1.2-darwin-arm64.tar.gz"
+  sha256 "738dac0bed94bf32cab4303940313f10f61de13184d1cb09b737501c5da5a77d"
   license "MIT"
-  version "0.1.1"
+  version "0.1.2"
 
   # Apple silicon only — drydock targets Apple's `container` runtime which is
   # arm64-native and ships only on macOS today.
@@ -32,8 +32,13 @@ class Drydock < Formula
       Bootstrap from any directory:
 
         export ANTHROPIC_API_KEY=sk-ant-...
-        drydock init                    # network, sandbox + anchor images
+        drydock init                    # seeds ~/.drydock/{config,egress}.yaml,
+                                        # creates the network, builds the images
         drydock start                   # foreground; ^C to stop
+
+      All operator config lives in ~/.drydock/. Edit and re-run
+      `drydock start`. ANTHROPIC_API_KEY stays in your shell env by
+      design — it never goes to disk.
 
       For PR/MR pushes, install whichever vendor CLI matches your repos and
       run its auth login first:

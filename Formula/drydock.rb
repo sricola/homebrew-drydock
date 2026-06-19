@@ -1,10 +1,10 @@
 class Drydock < Formula
   desc "Sandbox for autonomous coding agents on macOS"
   homepage "https://sricola.github.io/drydock/"
-  url "https://github.com/sricola/drydock/releases/download/v0.1.4/drydock-v0.1.4-darwin-arm64.tar.gz"
-  sha256 "c4a44461dae78442960a3c905e27e7b949dbe4ef47610a56184293ba33d04ac0"
+  url "https://github.com/sricola/drydock/releases/download/v0.1.5/drydock-v0.1.5-darwin-arm64.tar.gz"
+  sha256 "b82af6287dcd1ffdc09f66a3e38b915bfb0d5f3c2c6d56c8ea3d02c5b608c865"
   license "MIT"
-  version "0.1.4"
+  version "0.1.5"
 
   # Apple silicon only — drydock targets Apple's `container` runtime which is
   # arm64-native and ships only on macOS today.
@@ -29,16 +29,20 @@ class Drydock < Formula
         brew install --cask container
         container system start --enable-kernel-install
 
-      Bootstrap from any directory:
+      Bootstrap from any directory (set at least one vendor key):
 
-        export ANTHROPIC_API_KEY=sk-ant-...
+        export ANTHROPIC_API_KEY=sk-ant-...   # for Claude Code
+        export OPENAI_API_KEY=sk-...          # for OpenAI Codex
         drydock init                    # seeds ~/.drydock/{config,egress}.yaml,
                                         # creates the network, builds the images
         drydock start                   # foreground; ^C to stop
 
       All operator config lives in ~/.drydock/. Edit and re-run
-      `drydock start`. ANTHROPIC_API_KEY stays in your shell env by
-      design — it never goes to disk.
+      `drydock start`. The vendor keys (ANTHROPIC_API_KEY / OPENAI_API_KEY)
+      stay in your shell env by design — they never go to disk.
+
+      Pick the agent per task with `drydock submit --agent claude|codex`
+      (default `claude`; override with `default_agent` in the config).
 
       For PR/MR pushes, install whichever vendor CLI matches your repos and
       run its auth login first:

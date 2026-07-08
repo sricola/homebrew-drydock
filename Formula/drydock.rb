@@ -1,10 +1,10 @@
 class Drydock < Formula
   desc "Sandbox for autonomous coding agents on macOS"
   homepage "https://sricola.github.io/drydock/"
-  url "https://github.com/sricola/drydock/releases/download/v0.2.0/drydock-v0.2.0-darwin-arm64.tar.gz"
-  sha256 "376ae3bd5bca3a29595738c1b321277e1f41ab4ae476c8457fa4cafafac3c2fa"
-  license "MIT"
-  version "0.2.0"
+  url "https://github.com/sricola/drydock/releases/download/v0.5.0/drydock-v0.5.0-darwin-arm64.tar.gz"
+  sha256 "d4c45d4d6be778a5aa53226455da0f0e959289ff4bab63de0188bdb7baf5e2c0"
+  license "Apache-2.0"
+  version "0.5.0"
 
   # Apple silicon only — drydock targets Apple's `container` runtime which is
   # arm64-native and ships only on macOS today.
@@ -40,13 +40,17 @@ class Drydock < Formula
         drydock init                    # seeds ~/.drydock/{config,egress}.yaml,
                                         # creates the network, builds the images
         drydock start                   # foreground; ^C to stop
+        drydock daemon install          # …or unattended: launchd, starts at login
 
       All operator config lives in ~/.drydock/. Edit and re-run `drydock start`.
-      API keys stay in your shell env; subscription tokens live host-side in
-      ~/.drydock/ (mode 0600). Neither ever enters the sandbox VM.
+      API keys live in your shell env or host-side in ~/.drydock/api-keys.env
+      (mode 0600; the daemon requires host-side keys — launchd never sees your
+      shell). Subscription tokens live host-side too. Neither ever enters the
+      sandbox VM.
 
-      Pick the agent per task with `drydock submit --agent claude|codex`
-      (default `claude`; override with `default_agent` in the config).
+      Pick the agent per task with `drydock submit --agent
+      claude|codex|gemini|opencode` (default `claude`; `gemini` is
+      experimental; override with `default_agent` in the config).
 
       For PR/MR pushes, install whichever vendor CLI matches your repos and
       run its auth login first:

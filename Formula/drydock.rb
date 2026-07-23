@@ -1,10 +1,10 @@
 class Drydock < Formula
   desc "Sandbox for autonomous coding agents on macOS"
   homepage "https://sricola.github.io/drydock/"
-  url "https://github.com/sricola/drydock/releases/download/v0.6.2/drydock-v0.6.2-darwin-arm64.tar.gz"
-  sha256 "91554ac9760d681428d7c7f5c6ad85ad8da51282d6a3343009fa7cf0e7f991e1"
+  url "https://github.com/sricola/drydock/releases/download/v0.6.3/drydock-v0.6.3-darwin-arm64.tar.gz"
+  sha256 "bd63198944fcfc19f6a73eb3433a4c9ff6a3dc5b81970c2183dd2c8e480ed5cd"
   license "Apache-2.0"
-  version "0.6.2"
+  version "0.6.3"
 
   # Apple silicon only — drydock targets Apple's `container` runtime which is
   # arm64-native and ships only on macOS today.

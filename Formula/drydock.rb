@@ -1,10 +1,10 @@
 class Drydock < Formula
   desc "Sandbox for autonomous coding agents on macOS"
   homepage "https://sricola.github.io/drydock/"
-  url "https://github.com/sricola/drydock/releases/download/v0.7.1/drydock-v0.7.1-darwin-arm64.tar.gz"
-  sha256 "bad26457eea346e1eabe3d501d371c730ffd29ad26a7dbb440e50c1030e36a95"
+  url "https://github.com/sricola/drydock/releases/download/v0.8.0/drydock-v0.8.0-darwin-arm64.tar.gz"
+  sha256 "cf93f6a49cf22e1416b19fba4817d1e7c9a3cc9f9e610d45cc6eea4a10aca8c1"
   license "Apache-2.0"
-  version "0.7.1"
+  version "0.8.0"
 
   # Apple silicon only — drydock targets Apple's `container` runtime which is
   # arm64-native and ships only on macOS today.
@@ -26,7 +26,7 @@ class Drydock < Formula
     <<~EOS
       drydock needs Apple's `container` runtime installed and started:
 
-        brew install --cask container
+        brew install container
         container system start --enable-kernel-install
 
       Bootstrap from any directory. Use an API key — or run on your existing
